@@ -1,19 +1,38 @@
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize('mysql://root:qwerty@localhost:3306/joga_sequelize')
 
-const Article = require('../models/article')(sequelize, Sequelize.DataTypes);
+const models = require('../models')
 
 //kogu data
-const getAllArticles = async (req, res) => {
-    const articles = await Article.findAll()
-    res.json({articles: articles})
+const getAllArticles = (req, res) => {
+    models.Article.findAll()
+    .then(articles => {
+        console.log(articles)
+        return res.status(200).json({ articles })
+    })
+    .catch (error => {
+        return res.status(500).send(error.message)
+    })
 } 
 
 //data slugi kaupa
-const getArticleBySlug = async (req, res) => {
-    const article = await Article.findOne()
-    res.json({article: article})
-} 
+const getArticleBySlug = (req, res) => {
+    models.Article.findOne({
+        where: {
+            slug: req.params.slug
+        },
+        include: [{
+            model: models.Author
+        }],   
+    })
+    .then(article => {
+        console.log(article)
+        return res.status(200).json({ article });
+    })
+    .catch (error => {
+    return res.status(500).send(error.message);
+    })
+};
 
 
 module.exports= {

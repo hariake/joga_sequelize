@@ -9,6 +9,7 @@ module.exports = {
         image: 'ashtanga.jpg',
         body: '<p> AAAAAAAAAAAAAAAAAAAAAAAA </p>',
         published: '2020-01-08 15:04:23',
+        author_id: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }]),
@@ -18,6 +19,7 @@ module.exports = {
         image: 'morning.jpg',
         body: '<p> AAAAAAAAAAAAAAAAAAAAAAAA </p>',
         published: '2020-01-08 15:04:23',
+        author_id: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       }]),
@@ -27,6 +29,7 @@ module.exports = {
         image: 'yoga-teacher.jpg',
         body: '<p> AAAAAAAAAAAAAAAAAAAAAAAA </p>',
         published: '2020-01-08 15:04:23',
+        author_id: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }]),

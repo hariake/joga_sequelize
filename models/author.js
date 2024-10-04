@@ -11,10 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    }
+      
   }
+} 
   Author.init({
-    id: DataTypes.INTEGER,
+    id:{  
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    } ,
     name: DataTypes.STRING
   }, {
     sequelize,
