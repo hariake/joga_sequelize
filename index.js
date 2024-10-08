@@ -21,8 +21,9 @@ const articleRouter = require('./routes/article');
 const authorRouter = require('./routes/author');
 
 app.use('/', articleRouter);
-app.use('./article', articleRouter)
+app.use('/article', articleRouter)
 app.use('/', authorRouter);
+app.use('admin/article', articleRouter)
 
 
 app.get("/", (req, res) => {
