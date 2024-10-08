@@ -26,9 +26,45 @@ const createArticle = (req, res) => {
     });
     } 
 
+    const updateArticle = async (req, res) => {
+        const articleId = req.params.id;
+    
+        if (req.method === 'GET') {
+            try {
+                const article = await models.Article.findByPk(articleId);
+                if (!article) {
+                    return res.status(404).send({ message: 'Article not found'})
+                }
+                return res.status(200).json({ article })
+            } catch (error) {
+                return res.status(500).send(error.message)
+            }
+        }
+    
+        if (req.method === 'POST') {
+            let { name, slug, image, body, author_id } = req.body;
+    
+            try {
+                const updatedArticle = await models.Article.update(
+                    { name, slug, image, body, author_id },
+                    { where: { id: articleId }}
+                )
+    
+                if (updatedArticle[0] === 0) {
+                    return res.status(404).json({ message: 'Article not found or no changes made.' });
+                }
+                
+                return res.status(200).json({ message: 'Article updated successfully'})
+            } catch (error) {
+                return res.status(500).send(error.message)
+            }
+        }
+    } 
+
 
 
 
 module.exports= {
-    createArticle
+    createArticle,
+    updateArticle
 };  
